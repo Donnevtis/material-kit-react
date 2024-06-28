@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useMemo, useState, createContext } from 'react';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
@@ -11,17 +11,28 @@ import { typography } from './typography';
 import { customShadows } from './custom-shadows';
 
 // ----------------------------------------------------------------------
+export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export default function ThemeProvider({ children }) {
+  const [mode, setMode] = useState('light');
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    []
+  );
+
   const memoizedValue = useMemo(
     () => ({
-      palette: palette(),
+      palette: palette(mode),
       typography,
       shadows: shadows(),
       customShadows: customShadows(),
       shape: { borderRadius: 8 },
     }),
-    []
+    [mode]
   );
 
   const theme = createTheme(memoizedValue);
@@ -29,10 +40,12 @@ export default function ThemeProvider({ children }) {
   theme.components = overrides(theme);
 
   return (
-    <MUIThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </MUIThemeProvider>
+    <ColorModeContext.Provider value={colorMode}>
+      <MUIThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MUIThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 

@@ -1,0 +1,81 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "name": "Install Dependencies",
+      "command": "yarn install"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "dev": {
+      "name": "dev",
+      "command": "yarn dev",
+      "runAtStart": true,
+      "preview": {
+        "port": 3030
+      }
+    },
+    "start": {
+      "name": "start",
+      "command": "yarn start",
+      "runAtStart": false
+    },
+    "build": {
+      "name": "build",
+      "command": "yarn build",
+      "runAtStart": false
+    },
+    "lint": {
+      "name": "lint",
+      "command": "yarn lint",
+      "runAtStart": false
+    },
+    "lint:fix": {
+      "name": "lint:fix",
+      "command": "yarn lint:fix",
+      "runAtStart": false
+    },
+    "prettier": {
+      "name": "prettier",
+      "command": "yarn prettier",
+      "runAtStart": false
+    },
+    "rm:all": {
+      "name": "rm:all",
+      "command": "yarn rm:all",
+      "runAtStart": false
+    },
+    "re:start": {
+      "name": "re:start",
+      "command": "yarn re:start",
+      "runAtStart": false
+    },
+    "re:build": {
+      "name": "re:build",
+      "command": "yarn re:build",
+      "runAtStart": false
+    },
+    "re:build-npm": {
+      "name": "re:build-npm",
+      "command": "yarn re:build-npm",
+      "runAtStart": false
+    },
+    "dev:host": {
+      "name": "dev:host",
+      "command": "yarn dev:host",
+      "runAtStart": false
+    },
+    "vite:start": {
+      "name": "vite:start",
+      "command": "yarn vite:start",
+      "runAtStart": false
+    },
+    "vite:build": {
+      "name": "vite:build",
+      "command": "yarn vite:build",
+      "runAtStart": false
+    }
+  }
+}

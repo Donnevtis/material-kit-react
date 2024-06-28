@@ -99,25 +99,141 @@ const base = {
   action,
 };
 
+// Dark mode
+
+export const greyDark = {
+  0: '#FFFFFF',
+  100: '#F9FAFB',
+  200: 'rgb(22, 28, 36)',
+  300: '#DFE3E8',
+  400: 'rgb(52, 54, 53)',
+  500: '#919EAB',
+  600: '#637381',
+  700: '#454F5B',
+  800: '#212B36',
+  900: '#161C24',
+};
+
+export const primaryDark = {
+  lighter: '#D0ECFE',
+  light: '#73BAFB',
+  main: '#1877F2',
+  dark: '#0C44AE',
+  darker: '#042174',
+  contrastText: '#FFFFFF',
+};
+
+export const secondaryDark = {
+  lighter: '#EFD6FF',
+  light: '#C684FF',
+  main: '#8E33FF',
+  dark: '#5119B7',
+  darker: '#27097A',
+  contrastText: '#FFFFFF',
+};
+
+export const infoDark = {
+  lighter: '#CAFDF5',
+  light: '#61F3F3',
+  main: '#00B8D9',
+  dark: '#006C9C',
+  darker: '#003768',
+  contrastText: '#FFFFFF',
+};
+
+export const successDark = {
+  lighter: '#C8FAD6',
+  light: '#5BE49B',
+  main: '#00A76F',
+  dark: '#007867',
+  darker: '#004B50',
+  contrastText: '#FFFFFF',
+};
+
+export const warningDark = {
+  lighter: '#FFF5CC',
+  light: '#FFD666',
+  main: '#FFAB00',
+  dark: '#B76E00',
+  darker: '#7A4100',
+  contrastText: grey[800],
+};
+
+export const errorDark = {
+  lighter: '#FFE9D5',
+  light: '#FFAC82',
+  main: '#FF5630',
+  dark: '#B71D18',
+  darker: '#7A0916',
+  contrastText: '#FFFFFF',
+};
+
+export const commonDark = {
+  black: '#000000',
+  white: '#FFFFFF',
+};
+
+export const actionDark = {
+  hover: alpha(grey[500], 0.08),
+  selected: alpha(grey[500], 0.16),
+  disabled: alpha(grey[500], 0.8),
+  disabledBackground: alpha(grey[500], 0.24),
+  focus: alpha(grey[500], 0.24),
+  hoverOpacity: 0.08,
+  disabledOpacity: 0.48,
+};
+
+// const baseDark = {
+//   primary,
+//   secondary,
+//   info,
+//   success,
+//   warning,
+//   error,
+//   grey,
+//   common,
+//   divider: alpha(grey[500], 0.2),
+//   action,
+// };
+
 // ----------------------------------------------------------------------
 
-export function palette() {
+export function palette(mode = 'light') {
   return {
     ...base,
-    mode: 'light',
-    text: {
-      primary: grey[800],
-      secondary: grey[600],
-      disabled: grey[500],
-    },
-    background: {
-      paper: '#FFFFFF',
-      default: grey[100],
-      neutral: grey[200],
-    },
-    action: {
-      ...base.action,
-      active: grey[600],
-    },
+    mode,
+    ...(mode === 'light'
+      ? {
+          text: {
+            primary: grey[800],
+            secondary: grey[600],
+            disabled: grey[500],
+          },
+          background: {
+            paper: '#FFFFFF',
+            default: grey[200],
+            neutral: grey[400],
+          },
+          action: {
+            ...base.action,
+            active: grey[600],
+          },
+        }
+      : {
+          text: {
+            primary: greyDark[800],
+            secondary: greyDark[600],
+            disabled: greyDark[500],
+          },
+          background: {
+            paper: '#FFFFFF',
+            default: greyDark[200],
+            neutral: greyDark[400],
+          },
+          action: {
+            ...base.action,
+            active: greyDark[600],
+          },
+        }),
   };
 }
